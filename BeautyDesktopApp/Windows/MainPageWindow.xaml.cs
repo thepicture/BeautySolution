@@ -39,14 +39,14 @@ namespace BeautyDesktopApp.Windows
 
         private void Uslugi_Click(object sender, RoutedEventArgs e)
         {
-            Window3 Window = new Window3();
+            ServicesWindow Window = new ServicesWindow();
             Window.Show();
             Close();
         }
 
         private void Svyaz_Click(object sender, RoutedEventArgs e)
         {
-            Window4 Window = new Window4();
+            MakeOrderWindow Window = new MakeOrderWindow();
             Window.Show();
             Close();
         }

@@ -60,6 +60,7 @@ namespace BeautyDesktopApp.Windows
                     var customer = entities.Клиент.FirstOrDefault(c => c.Логин == Login && c.Пароль == Password);
                     if (customer is Клиент)
                     {
+                        App.Customer = customer;
                         MainPageWindow Window = new MainPageWindow();
                         Window.Show();
                         Close();

@@ -14,13 +14,14 @@
         </EntityType>
         <EntityType Name="Запись_на_услугу">
           <Key>
-            <PropertyRef Name="ID_услуги" />
-            <PropertyRef Name="ID_клиента" />
+            <PropertyRef Name="ID_записи_на_услугу" />
           </Key>
+          <Property Name="ID_записи_на_услугу" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_услуги" Type="int" Nullable="false" />
           <Property Name="ID_клиента" Type="int" Nullable="false" />
           <Property Name="Дата_начала" Type="date" Nullable="false" />
-          <Property Name="Время_начала" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Время_начала" Type="datetime" Nullable="false" />
+          <Property Name="Номер_карты" Type="nvarchar" MaxLength="19" />
         </EntityType>
         <EntityType Name="Клиент">
           <Key>
@@ -228,13 +229,14 @@
         </EntityType>
         <EntityType Name="Запись_на_услугу">
           <Key>
-            <PropertyRef Name="ID_услуги" />
-            <PropertyRef Name="ID_клиента" />
+            <PropertyRef Name="ID_записи_на_услугу" />
           </Key>
+          <Property Name="ID_записи_на_услугу" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_услуги" Type="Int32" Nullable="false" />
           <Property Name="ID_клиента" Type="Int32" Nullable="false" />
           <Property Name="Дата_начала" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Время_начала" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Время_начала" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Номер_карты" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Клиент" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Клиент1" FromRole="Запись_на_услугу" ToRole="Клиент" />
           <NavigationProperty Name="Услуга" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Услуга1" FromRole="Запись_на_услугу" ToRole="Услуга" />
         </EntityType>
@@ -390,10 +392,12 @@
           <EntitySetMapping Name="Запись_на_услугу">
             <EntityTypeMapping TypeName="BeautyBaseModel.Запись_на_услугу">
               <MappingFragment StoreEntitySet="Запись_на_услугу">
+                <ScalarProperty Name="Номер_карты" ColumnName="Номер_карты" />
                 <ScalarProperty Name="Время_начала" ColumnName="Время_начала" />
                 <ScalarProperty Name="Дата_начала" ColumnName="Дата_начала" />
                 <ScalarProperty Name="ID_клиента" ColumnName="ID_клиента" />
                 <ScalarProperty Name="ID_услуги" ColumnName="ID_услуги" />
+                <ScalarProperty Name="ID_записи_на_услугу" ColumnName="ID_записи_на_услугу" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

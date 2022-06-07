@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BeautyDesktopApp.Models.Entities;
 using System.Windows;
 
 namespace BeautyDesktopApp
@@ -13,5 +8,7 @@ namespace BeautyDesktopApp
     /// </summary>
     public partial class App : Application
     {
+        public static Клиент Customer { get; set; }
+        public static Работник Worker { get; set; }
     }
 }

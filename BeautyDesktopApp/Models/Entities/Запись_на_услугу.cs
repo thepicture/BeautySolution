@@ -14,10 +14,12 @@ namespace BeautyDesktopApp.Models.Entities
     
     public partial class Запись_на_услугу
     {
+        public int ID_записи_на_услугу { get; set; }
         public int ID_услуги { get; set; }
         public int ID_клиента { get; set; }
         public System.DateTime Дата_начала { get; set; }
-        public System.TimeSpan Время_начала { get; set; }
+        public System.DateTime Время_начала { get; set; }
+        public string Номер_карты { get; set; }
     
         public virtual Клиент Клиент { get; set; }
         public virtual Услуга Услуга { get; set; }

@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e777c1bc9b6f42ef9df72fd337653ee0" Name="Diagram1">
         <EntityTypeShape EntityType="BeautyBaseModel.Должность" Width="1.5" PointX="0.75" PointY="1.625" />
-        <EntityTypeShape EntityType="BeautyBaseModel.Запись_на_услугу" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="BeautyBaseModel.Запись_на_услугу" Width="1.5" PointX="7.5" PointY="1.125" />
         <EntityTypeShape EntityType="BeautyBaseModel.Клиент" Width="1.5" PointX="5.25" PointY="5.125" />
         <EntityTypeShape EntityType="BeautyBaseModel.Отзыв" Width="1.5" PointX="7.5" PointY="5.5" />
         <EntityTypeShape EntityType="BeautyBaseModel.Работник" Width="1.5" PointX="3" PointY="1" />
