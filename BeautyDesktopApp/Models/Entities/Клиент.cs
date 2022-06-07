@@ -24,7 +24,7 @@ namespace BeautyDesktopApp.Models.Entities
         public int ID_клиента { get; set; }
         public string ФИО { get; set; }
         public Nullable<System.DateTime> Дата_рождения { get; set; }
-        public Nullable<int> Номер_телефона { get; set; }
+        public string Номер_телефона { get; set; }
         public string Логин { get; set; }
         public string Пароль { get; set; }
     

@@ -1,0 +1,179 @@
+﻿<Window x:Class="BeautyDesktopApp.Windows.CustomersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautyDesktopApp.Windows"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:BeautyDesktopApp.Controls"
+        mc:Ignorable="d"
+        Title="Управление клиентами"
+        Height="810"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Name="Window">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="0,1">
+                <GradientStop Color="MediumPurple"
+                              Offset=".4" />
+                <GradientStop Color="DeepSkyBlue"
+                              Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <UniformGrid Rows="2"
+                     Margin="30"
+                     MaxWidth="800">
+            <DataGrid ItemsSource="{Binding ElementName=Window, Path=Customers}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      ColumnWidth="*">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО"
+                                        Width="auto"
+                                        Binding="{Binding ФИО}" />
+                    <DataGridTextColumn Header="Дата рождения"
+                                        Width="auto"
+                                        Binding="{Binding Дата_рождения, StringFormat={}{0:yyyy-MM-dd}}" />
+                    <DataGridTextColumn Header="Тел."
+                                        Width="auto"
+                                        Binding="{Binding Номер_телефона}" />
+                    <DataGridTextColumn Header="Логин"
+                                        Binding="{Binding Логин}" />
+                    <DataGridTemplateColumn Header="Действие"
+                                            Width="250">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <UniformGrid Columns="2">
+                                    <Button Content="Удалить"
+                                            Click="OnDeleteCustomer"
+                                            Margin="5" />
+                                    <Button Content="Изменить"
+                                            Click="OnEditCustomer"
+                                            Margin="5" />
+                                </UniformGrid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <GroupBox Header="Управление клиентом"
+                      Margin="0,20,0,0"
+                      Foreground="White"
+                      Style="{x:Null}"
+                      VerticalAlignment="Center">
+                <GroupBox.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </GroupBox.BitmapEffect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ФИО"
+                               TextAlignment="Right"
+                               Margin="5" />
+                    <TextBox Text="{Binding ElementName=Window, Path=Customer.ФИО, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Grid.Column="1"
+                             Margin="5"
+                             Style="{x:Null}"
+                             VerticalContentAlignment="Center"
+                             Height="25"
+                             materialDesign:HintAssist.Hint="Введите ФИО" />
+                    <TextBlock Text="Дата рождения"
+                               TextAlignment="Right"
+                               Grid.Row="1"
+                               Margin="5" />
+                    <DatePicker SelectedDate="{Binding ElementName=Window, Path=Customer.Дата_рождения, ValidatesOnDataErrors=True}"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Style="{x:Null}"
+                                Margin="5"
+                                Foreground="Black"
+                                Background="White" />
+                    <TextBlock Text="Номер телефона"
+                               TextAlignment="Right"
+                               Grid.Row="2"
+                               Margin="5" />
+                    <xctk:MaskedTextBox Text="{Binding ElementName=Window, Path=Customer.Номер_телефона, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                        Mask="+7 (###) ### ##-##"
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        Height="25" />
+                    <TextBlock Text="Логин"
+                               TextAlignment="Right"
+                               Grid.Row="3"
+                               Margin="5" />
+                    <Grid Background="White"
+                          Grid.Row="3"
+                          Grid.Column="1"
+                          Margin="5">
+                        <TextBox Text="{Binding ElementName=Window, Path=Customer.Логин, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
+                                 Style="{x:Null}"
+                                 Height="25"
+                                 materialDesign:HintAssist.Hint="Введите логин" />
+                    </Grid>
+                    <TextBlock Text="Пароль"
+                               TextAlignment="Right"
+                               Grid.Row="4"
+                               Margin="5" />
+                    <Grid Grid.Row="4"
+                          Grid.Column="1"
+                          Margin="5"
+                          Background="White">
+                        <controls:CommonBindablePasswordBox BindableText="{Binding ElementName=Window, Path=Customer.Пароль, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                            x:Name="CustomerPassword"
+                                                            Grid.Row="4"
+                                                            Grid.Column="1"
+                                                            Height="25"
+                                                            Foreground="Black" />
+                    </Grid>
+                    <Button Content="Сохранить"
+                            IsEnabled="{Binding ElementName=Window, Path=Customer.IsValid}"
+                            Click="OnCustomerSave"
+                            Grid.Row="5"
+                            Grid.ColumnSpan="2"
+                            Margin="5"
+                            Foreground="White">
+                        <Button.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="Red"
+                                              Offset=".2" />
+                                <GradientStop Color="Blue"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Content="Подготовить поля для нового клиента"
+                            Click="OnAddNewCustomer"
+                            Grid.Row="6"
+                            Grid.ColumnSpan="2"
+                            Margin="5"
+                            Foreground="White" />
+                    <Button Content="Назад"
+                            Click="OnGoBack"
+                            Grid.Row="7"
+                            Grid.ColumnSpan="2"
+                            Margin="5"
+                            Foreground="White">
+                    </Button>
+                </Grid>
+            </GroupBox>
+        </UniformGrid>
+    </Grid>
+</Window>

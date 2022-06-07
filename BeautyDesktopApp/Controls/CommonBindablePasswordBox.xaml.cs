@@ -1,15 +1,25 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace BeautyDesktopApp.Controls
 {
     /// <summary>
-    /// Interaction logic for BindablePasswordBox.xaml
+    /// Interaction logic for CommonBindablePasswordBox.xaml
     /// </summary>
-    public partial class BindablePasswordBox : UserControl
+    public partial class CommonBindablePasswordBox : UserControl
     {
-
 
         public bool IsShouldFocus
         {
@@ -18,7 +28,7 @@ namespace BeautyDesktopApp.Controls
         }
 
         public static readonly DependencyProperty IsShouldFocusProperty =
-            DependencyProperty.Register("IsShouldFocus", typeof(bool), typeof(BindablePasswordBox), new PropertyMetadata(default));
+            DependencyProperty.Register("IsShouldFocus", typeof(bool), typeof(CommonBindablePasswordBox), new PropertyMetadata(default));
 
 
         public ControlTemplate ErrorTemplate
@@ -30,7 +40,7 @@ namespace BeautyDesktopApp.Controls
         public static readonly DependencyProperty ErrorTemplateProperty =
             DependencyProperty.Register("ErrorTemplate",
                                         typeof(ControlTemplate),
-                                        typeof(BindablePasswordBox),
+                                        typeof(CommonBindablePasswordBox),
                                         new PropertyMetadata(default, OnErrorTemplateChanged));
 
         private static void OnErrorTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -39,8 +49,8 @@ namespace BeautyDesktopApp.Controls
             {
                 return;
             }
-            BindablePasswordBox bindablePasswordBox = (BindablePasswordBox)d;
-            bindablePasswordBox.SetValue(Validation.ErrorTemplateProperty, e.NewValue);
+            CommonBindablePasswordBox bindablePasswordBox = (CommonBindablePasswordBox)d;
+            bindablePasswordBox.BindablePassword.SetValue(Validation.ErrorTemplateProperty, e.NewValue);
         }
 
         public string BindableText
@@ -52,11 +62,11 @@ namespace BeautyDesktopApp.Controls
         public static readonly DependencyProperty BindableTextProperty =
             DependencyProperty.Register("BindableText",
                                         typeof(string),
-                                        typeof(BindablePasswordBox),
+                                        typeof(CommonBindablePasswordBox),
                                         new FrameworkPropertyMetadata(default(string),
                                                                       FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
-        public BindablePasswordBox()
+        public CommonBindablePasswordBox()
         {
             InitializeComponent();
         }

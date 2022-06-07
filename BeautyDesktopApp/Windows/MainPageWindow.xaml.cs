@@ -73,7 +73,7 @@ namespace BeautyDesktopApp.Windows
 
         private void OnPostReview(object sender, RoutedEventArgs e)
         {
-            if(App.Worker != null)
+            if (App.Worker != null)
             {
                 MessageBox.Show("Только клиенты могут оставлять отзывы, вы сотрудник!");
                 return;
@@ -105,6 +105,13 @@ namespace BeautyDesktopApp.Windows
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+
+        private void GoToCustomersWindow(object sender, RoutedEventArgs e)
+        {
+            CustomersWindow customersWindow = new CustomersWindow();
+            customersWindow.Show();
+            Close();
         }
     }
 }

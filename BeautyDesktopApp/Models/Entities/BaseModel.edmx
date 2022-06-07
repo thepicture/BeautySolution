@@ -30,7 +30,7 @@
           <Property Name="ID_клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ФИО" Type="text" />
           <Property Name="Дата_рождения" Type="date" />
-          <Property Name="Номер_телефона" Type="int" />
+          <Property Name="Номер_телефона" Type="nvarchar" MaxLength="18" />
           <Property Name="Логин" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Пароль" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
@@ -76,7 +76,9 @@
           <Property Name="Картинка" Type="image" />
         </EntityType>
         <Association Name="FK_Запись_на_услугу_Клиент1">
-          <End Role="Клиент" Type="Self.Клиент" Multiplicity="1" />
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Запись_на_услугу" Type="Self.Запись_на_услугу" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Клиент">
@@ -247,7 +249,7 @@
           <Property Name="ID_клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ФИО" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
-          <Property Name="Номер_телефона" Type="Int32" />
+          <Property Name="Номер_телефона" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
           <Property Name="Логин" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Пароль" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Запись_на_услугу" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Клиент1" FromRole="Клиент" ToRole="Запись_на_услугу" />
@@ -314,7 +316,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Запись_на_услугу_Клиент1">
-          <End Type="BeautyBaseModel.Клиент" Role="Клиент" Multiplicity="1" />
+          <End Type="BeautyBaseModel.Клиент" Role="Клиент" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="BeautyBaseModel.Запись_на_услугу" Role="Запись_на_услугу" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Клиент">
