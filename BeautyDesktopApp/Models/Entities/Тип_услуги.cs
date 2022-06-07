@@ -12,24 +12,17 @@ namespace BeautyDesktopApp.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Работник
+    public partial class Тип_услуги
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Работник()
+        public Тип_услуги()
         {
             this.Услуга = new HashSet<Услуга>();
         }
     
-        public int ID_раб { get; set; }
-        public int ID_должности { get; set; }
-        public string ФИО { get; set; }
-        public System.DateTime Дата_рождения { get; set; }
-        public string Номер_телефона { get; set; }
-        public int Стаж_работы_в_годах { get; set; }
-        public string Логин { get; set; }
-        public string Пароль { get; set; }
+        public int ID_типа_услуги { get; set; }
+        public string Название { get; set; }
     
-        public virtual Должность Должность { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Услуга> Услуга { get; set; }
     }

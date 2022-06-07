@@ -30,6 +30,7 @@ namespace BeautyDesktopApp.Models.Entities
         public virtual DbSet<Клиент> Клиент { get; set; }
         public virtual DbSet<Отзыв> Отзыв { get; set; }
         public virtual DbSet<Работник> Работник { get; set; }
+        public virtual DbSet<Тип_услуги> Тип_услуги { get; set; }
         public virtual DbSet<Услуга> Услуга { get; set; }
     }
 }

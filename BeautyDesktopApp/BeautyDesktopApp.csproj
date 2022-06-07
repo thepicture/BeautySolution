@@ -97,6 +97,9 @@
     <Compile Include="Models\Entities\Отзыв.cs">
       <DependentUpon>BaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Тип_услуги.cs">
+      <DependentUpon>BaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -142,11 +145,11 @@
     <Compile Include="Windows\Window4.xaml.cs">
       <DependentUpon>Window4.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Window5.xaml.cs">
-      <DependentUpon>Window5.xaml</DependentUpon>
+    <Compile Include="Windows\AboutUsWindow.xaml.cs">
+      <DependentUpon>AboutUsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Window6.xaml.cs">
-      <DependentUpon>Window6.xaml</DependentUpon>
+    <Compile Include="Windows\MasterWorksWindow.xaml.cs">
+      <DependentUpon>MasterWorksWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -180,11 +183,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Window5.xaml">
+    <Page Include="Windows\AboutUsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Window6.xaml">
+    <Page Include="Windows\MasterWorksWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,25 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BeautyDesktopApp.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Window5.xaml
+    /// Логика взаимодействия для AboutUsWindow.xaml
     /// </summary>
-    public partial class Window5 : Window
+    public partial class AboutUsWindow : Window
     {
-        public Window5()
+        public AboutUsWindow()
         {
             InitializeComponent();
         }
@@ -33,7 +22,7 @@ namespace BeautyDesktopApp.Windows
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Window6 Window = new Window6();
+            MasterWorksWindow Window = new MasterWorksWindow();
             Window.Show();
             Close();
         }

@@ -1,0 +1,199 @@
+﻿<Window x:Class="BeautyDesktopApp.Windows.MasterWorksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautyDesktopApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Работы мастера"
+        Height="650"
+        Width="900"
+        Name="Window"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFDB8B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Поиск:"
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Margin="5" />
+            <ComboBox ItemsSource="{Binding ElementName=Window, Path=ServiceTypes}"
+                      SelectedItem="{Binding ElementName=Window, Path=SelectedServiceType}"
+                      DisplayMemberPath="Название"
+                      materialDesign:HintAssist.Hint="Тип услуги"
+                      Grid.Column="1"
+                      Margin="5"
+                      Padding="10" />
+            <ComboBox ItemsSource="{Binding ElementName=Window, Path=Masters}"
+                      SelectedItem="{Binding ElementName=Window, Path=SelectedMaster}"
+                      DisplayMemberPath="ФИО"
+                      materialDesign:HintAssist.Hint="Мастер"
+                      Grid.Column="2"
+                      Margin="5"
+                      Padding="10" />
+            <TextBox Text="{Binding ElementName=Window, Path=ServiceSearchText, UpdateSourceTrigger=PropertyChanged}"
+                     Grid.Column="3"
+                     Margin="5"
+                     materialDesign:HintAssist.Hint="Поиск по названию" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="18"
+                       TextWrapping="Wrap">
+                <TextBlock.Inlines>
+                    <Run Text="Любимые наши Красотки, именно тут вы можете " />
+                    <LineBreak />
+                    <Run Text="увидеть работы наших мастеров, а так же их ФИО! " />
+                    <LineBreak />
+                    <Run FontWeight="Bold"
+                         Text="МЫ ЖДЕМ ВАС - ПРИШЛО ВРЕМЯ СИЯТЬ!" />
+                </TextBlock.Inlines>
+            </TextBlock>
+            <ListView ItemsSource="{Binding ElementName=Window, Path=Services}"
+                      Grid.Row="1"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.Style>
+                    <Style TargetType="ListView">
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+                        <Style.Triggers>
+                            <Trigger Property="HasItems"
+                                     Value="False">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <TextBlock Text="Ничего не найдено"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Style>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card Margin="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/Resources/кератин.jpg"
+                                       Height="100"
+                                       Width="100"
+                                       Stretch="Uniform"
+                                       Margin="10" />
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Название, TargetNullValue=Аноним}"
+                                               FontWeight="Bold"
+                                               Margin="10" />
+                                    <Rectangle Height="1"
+                                               Fill="LightGray"
+                                               Margin="10,0"
+                                               Grid.Row="1" />
+                                    <TextBlock Text="{Binding Работник.ФИО, StringFormat={}ФИО мастера: {0}}"
+                                               FontWeight="Bold"
+                                               Margin="10"
+                                               Grid.Row="2" />
+                                    <TextBlock Text="{Binding Работник.Стаж_работы_в_годах, StringFormat={}Опыт работы (лет): {0}}"
+                                               FontWeight="Bold"
+                                               Margin="10"
+                                               Grid.Row="2"
+                                               HorizontalAlignment="Right"
+                                               FontSize="10"
+                                               VerticalAlignment="Center" />
+                                </Grid>
+                            </Grid>
+                        </materialDesign:Card>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+                <Grid Height="1"
+                      Background="Black"
+                      Margin="0,10" />
+                <TextBlock FontSize="16"
+                           Grid.Row="1"
+                           TextWrapping="Wrap">
+                    <TextBlock.Inlines>
+                        <Run Text="У нас самые лучшие мастера! " />
+                        <LineBreak />
+                        <Run Text="Мы поможем вам собраться на любой праздник и быть " />
+                        <LineBreak />
+                        <Run Text="там самой лучшей! Также у нас Вы можете преобрести " />
+                        <LineBreak />
+                        <Run Text="Подарочные Сертификаты!" />
+                    </TextBlock.Inlines>
+                </TextBlock>
+                <Image Source="/Resources/GHBDTN CR.jpg"
+                       Stretch="Uniform"
+                       Grid.Row="2" />
+            </Grid>
+            <Grid Grid.Column="1"
+                  Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Image Source="/Resources/ПАРИКМАХЕР.jpg"
+                       Stretch="Fill"
+                       Margin="10" />
+                <Button Content="О нас"
+                        Click="GoToAboutUsWindow"
+                        Background="#FFDB8B"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        HorizontalAlignment="Right"
+                        Grid.Row="1" />
+                <Button Content="На главную"
+                        Click="GoToMainPageWindow"
+                        Background="#FFDB8B"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        HorizontalAlignment="Right"
+                        Grid.Row="2" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

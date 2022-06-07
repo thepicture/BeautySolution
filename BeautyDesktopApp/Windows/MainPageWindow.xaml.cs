@@ -10,7 +10,7 @@ using System.Windows;
 namespace BeautyDesktopApp.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для MainPageWindow.xaml
     /// </summary>
     public partial class MainPageWindow : Window, INotifyPropertyChanged
     {
@@ -53,14 +53,14 @@ namespace BeautyDesktopApp.Windows
 
         private void Onas_Click(object sender, RoutedEventArgs e)
         {
-            Window5 Window = new Window5();
+            AboutUsWindow Window = new AboutUsWindow();
             Window.Show();
             Close();
         }
 
-        private void Master_Click(object sender, RoutedEventArgs e)
+        private void GoToMasterWorksWindow(object sender, RoutedEventArgs e)
         {
-            Window6 Window = new Window6();
+            MasterWorksWindow Window = new MasterWorksWindow();
             Window.Show();
             Close();
         }

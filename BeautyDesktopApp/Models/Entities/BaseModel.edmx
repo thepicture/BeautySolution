@@ -46,14 +46,21 @@
           <Key>
             <PropertyRef Name="ID_раб" />
           </Key>
-          <Property Name="ID_раб" Type="int" Nullable="false" />
+          <Property Name="ID_раб" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_должности" Type="int" Nullable="false" />
           <Property Name="ФИО" Type="text" Nullable="false" />
           <Property Name="Дата_рождения" Type="date" Nullable="false" />
-          <Property Name="Номер_телефона" Type="int" Nullable="false" />
+          <Property Name="Номер_телефона" Type="nvarchar" MaxLength="18" Nullable="false" />
           <Property Name="Стаж_работы_в_годах" Type="int" Nullable="false" />
           <Property Name="Логин" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Пароль" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тип_услуги">
+          <Key>
+            <PropertyRef Name="ID_типа_услуги" />
+          </Key>
+          <Property Name="ID_типа_услуги" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Услуга">
           <Key>
@@ -61,10 +68,11 @@
           </Key>
           <Property Name="ID_услуги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_работника" Type="int" Nullable="false" />
+          <Property Name="ID_типа_услуги" Type="int" Nullable="false" />
           <Property Name="Название" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Стоимость" Type="int" Nullable="false" />
+          <Property Name="Стоимость" Type="money" Nullable="false" />
           <Property Name="Длительность_в_минутах" Type="int" Nullable="false" />
-          <Property Name="Картинка" Type="image" Nullable="false" />
+          <Property Name="Картинка" Type="image" />
         </EntityType>
         <Association Name="FK_Запись_на_услугу_Клиент1">
           <End Role="Клиент" Type="Self.Клиент" Multiplicity="1" />
@@ -128,12 +136,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Услуга_Тип_услуги">
+          <End Role="Тип_услуги" Type="Self.Тип_услуги" Multiplicity="1" />
+          <End Role="Услуга" Type="Self.Услуга" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_услуги">
+              <PropertyRef Name="ID_типа_услуги" />
+            </Principal>
+            <Dependent Role="Услуга">
+              <PropertyRef Name="ID_типа_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BeautyBaseModelStoreContainer">
           <EntitySet Name="Должность" EntityType="Self.Должность" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Запись_на_услугу" EntityType="Self.Запись_на_услугу" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Отзыв" EntityType="Self.Отзыв" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Работник" EntityType="Self.Работник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_услуги" EntityType="Self.Тип_услуги" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Услуга" EntityType="Self.Услуга" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Запись_на_услугу_Клиент1" Association="Self.FK_Запись_на_услугу_Клиент1">
             <End Role="Клиент" EntitySet="Клиент" />
@@ -155,6 +176,10 @@
             <End Role="Работник" EntitySet="Работник" />
             <End Role="Услуга" EntitySet="Услуга" />
           </AssociationSet>
+          <AssociationSet Name="FK_Услуга_Тип_услуги" Association="Self.FK_Услуга_Тип_услуги">
+            <End Role="Тип_услуги" EntitySet="Тип_услуги" />
+            <End Role="Услуга" EntitySet="Услуга" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -166,6 +191,7 @@
           <EntitySet Name="Клиент" EntityType="BeautyBaseModel.Клиент" />
           <EntitySet Name="Отзыв" EntityType="BeautyBaseModel.Отзыв" />
           <EntitySet Name="Работник" EntityType="BeautyBaseModel.Работник" />
+          <EntitySet Name="Тип_услуги" EntityType="BeautyBaseModel.Тип_услуги" />
           <EntitySet Name="Услуга" EntityType="BeautyBaseModel.Услуга" />
           <AssociationSet Name="FK_Работник_Должность" Association="BeautyBaseModel.FK_Работник_Должность">
             <End Role="Должность" EntitySet="Должность" />
@@ -185,6 +211,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Услуга_Работник" Association="BeautyBaseModel.FK_Услуга_Работник">
             <End Role="Работник" EntitySet="Работник" />
+            <End Role="Услуга" EntitySet="Услуга" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Услуга_Тип_услуги" Association="BeautyBaseModel.FK_Услуга_Тип_услуги">
+            <End Role="Тип_услуги" EntitySet="Тип_услуги" />
             <End Role="Услуга" EntitySet="Услуга" />
           </AssociationSet>
         </EntityContainer>
@@ -235,16 +265,24 @@
           <Key>
             <PropertyRef Name="ID_раб" />
           </Key>
-          <Property Name="ID_раб" Type="Int32" Nullable="false" />
+          <Property Name="ID_раб" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_должности" Type="Int32" Nullable="false" />
           <Property Name="ФИО" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Номер_телефона" Type="Int32" Nullable="false" />
+          <Property Name="Номер_телефона" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="true" />
           <Property Name="Стаж_работы_в_годах" Type="Int32" Nullable="false" />
           <Property Name="Логин" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Пароль" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Должность" Relationship="BeautyBaseModel.FK_Работник_Должность" FromRole="Работник" ToRole="Должность" />
           <NavigationProperty Name="Услуга" Relationship="BeautyBaseModel.FK_Услуга_Работник" FromRole="Работник" ToRole="Услуга" />
+        </EntityType>
+        <EntityType Name="Тип_услуги">
+          <Key>
+            <PropertyRef Name="ID_типа_услуги" />
+          </Key>
+          <Property Name="ID_типа_услуги" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Услуга" Relationship="BeautyBaseModel.FK_Услуга_Тип_услуги" FromRole="Тип_услуги" ToRole="Услуга" />
         </EntityType>
         <EntityType Name="Услуга">
           <Key>
@@ -252,12 +290,14 @@
           </Key>
           <Property Name="ID_услуги" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_работника" Type="Int32" Nullable="false" />
+          <Property Name="ID_типа_услуги" Type="Int32" Nullable="false" />
           <Property Name="Название" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Стоимость" Type="Int32" Nullable="false" />
+          <Property Name="Стоимость" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Длительность_в_минутах" Type="Int32" Nullable="false" />
-          <Property Name="Картинка" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Картинка" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Запись_на_услугу" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Услуга1" FromRole="Услуга" ToRole="Запись_на_услугу" />
           <NavigationProperty Name="Работник" Relationship="BeautyBaseModel.FK_Услуга_Работник" FromRole="Услуга" ToRole="Работник" />
+          <NavigationProperty Name="Тип_услуги" Relationship="BeautyBaseModel.FK_Услуга_Тип_услуги" FromRole="Услуга" ToRole="Тип_услуги" />
         </EntityType>
         <Association Name="FK_Работник_Должность">
           <End Type="BeautyBaseModel.Должность" Role="Должность" Multiplicity="1" />
@@ -321,6 +361,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Услуга_Тип_услуги">
+          <End Type="BeautyBaseModel.Тип_услуги" Role="Тип_услуги" Multiplicity="1" />
+          <End Type="BeautyBaseModel.Услуга" Role="Услуга" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_услуги">
+              <PropertyRef Name="ID_типа_услуги" />
+            </Principal>
+            <Dependent Role="Услуга">
+              <PropertyRef Name="ID_типа_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -381,6 +433,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Тип_услуги">
+            <EntityTypeMapping TypeName="BeautyBaseModel.Тип_услуги">
+              <MappingFragment StoreEntitySet="Тип_услуги">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID_типа_услуги" ColumnName="ID_типа_услуги" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Услуга">
             <EntityTypeMapping TypeName="BeautyBaseModel.Услуга">
               <MappingFragment StoreEntitySet="Услуга">
@@ -388,6 +448,7 @@
                 <ScalarProperty Name="Длительность_в_минутах" ColumnName="Длительность_в_минутах" />
                 <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
                 <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID_типа_услуги" ColumnName="ID_типа_услуги" />
                 <ScalarProperty Name="ID_работника" ColumnName="ID_работника" />
                 <ScalarProperty Name="ID_услуги" ColumnName="ID_услуги" />
               </MappingFragment>

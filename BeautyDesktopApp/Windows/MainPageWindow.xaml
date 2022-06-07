@@ -40,7 +40,7 @@
                         FontFamily="Verdana" />
                 <Button x:Name="Master"
                         Content="Работы мастера"
-                        Click="Master_Click"
+                        Click="GoToMasterWorksWindow"
                         Style="{StaticResource MaterialDesignFlatButton}"
                         FontSize="16"
                         FontFamily="Verdana" />

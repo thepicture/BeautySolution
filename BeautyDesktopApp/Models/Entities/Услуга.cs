@@ -22,13 +22,15 @@ namespace BeautyDesktopApp.Models.Entities
     
         public int ID_услуги { get; set; }
         public int ID_работника { get; set; }
+        public int ID_типа_услуги { get; set; }
         public string Название { get; set; }
-        public int Стоимость { get; set; }
+        public decimal Стоимость { get; set; }
         public int Длительность_в_минутах { get; set; }
         public byte[] Картинка { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Запись_на_услугу> Запись_на_услугу { get; set; }
         public virtual Работник Работник { get; set; }
+        public virtual Тип_услуги Тип_услуги { get; set; }
     }
 }

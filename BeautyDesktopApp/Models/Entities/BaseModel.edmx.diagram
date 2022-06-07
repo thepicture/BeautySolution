@@ -10,12 +10,14 @@
         <EntityTypeShape EntityType="BeautyBaseModel.Клиент" Width="1.5" PointX="5.25" PointY="5.125" />
         <EntityTypeShape EntityType="BeautyBaseModel.Отзыв" Width="1.5" PointX="7.5" PointY="5.5" />
         <EntityTypeShape EntityType="BeautyBaseModel.Работник" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="BeautyBaseModel.Услуга" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="BeautyBaseModel.Тип_услуги" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="BeautyBaseModel.Услуга" Width="1.5" PointX="5.25" PointY="1" />
         <AssociationConnector Association="BeautyBaseModel.FK_Работник_Должность" />
         <AssociationConnector Association="BeautyBaseModel.FK_Запись_на_услугу_Клиент1" />
         <AssociationConnector Association="BeautyBaseModel.FK_Запись_на_услугу_Услуга1" />
         <AssociationConnector Association="BeautyBaseModel.FK_Отзыв_Клиент" />
         <AssociationConnector Association="BeautyBaseModel.FK_Услуга_Работник" />
+        <AssociationConnector Association="BeautyBaseModel.FK_Услуга_Тип_услуги" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
