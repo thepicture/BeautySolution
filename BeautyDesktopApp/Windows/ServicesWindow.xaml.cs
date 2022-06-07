@@ -14,7 +14,7 @@ namespace BeautyDesktopApp.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MakeOrderWindow Window = new MakeOrderWindow();
+            DealWithUsWindow Window = new DealWithUsWindow();
             Window.Show();
             Close();
         }

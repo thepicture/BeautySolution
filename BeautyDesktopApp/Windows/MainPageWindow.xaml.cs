@@ -19,13 +19,19 @@ namespace BeautyDesktopApp.Windows
         public MainPageWindow()
         {
             InitializeComponent();
+            LoadReviewsAsync();
+        }
+
+        private async void LoadReviewsAsync()
+        {
             try
             {
                 using (BeautyBaseEntities entities = new BeautyBaseEntities())
                 {
-                    List<Отзыв> reviews = entities.Отзыв
+                    List<Отзыв> reviews = await entities.Отзыв
+                        .OrderByDescending(r => r.Дата_публикации)
                         .Include(r => r.Клиент)
-                        .ToList();
+                        .ToListAsync();
                     Reviews = new ObservableCollection<Отзыв>(reviews);
                 }
             }
@@ -39,30 +45,66 @@ namespace BeautyDesktopApp.Windows
 
         private void Uslugi_Click(object sender, RoutedEventArgs e)
         {
-            ServicesWindow Window = new ServicesWindow();
-            Window.Show();
+            ServicesWindow servicesWindow = new ServicesWindow();
+            servicesWindow.Show();
             Close();
         }
 
         private void Svyaz_Click(object sender, RoutedEventArgs e)
         {
-            MakeOrderWindow Window = new MakeOrderWindow();
-            Window.Show();
+            DealWithUsWindow dealWithUsWindow = new DealWithUsWindow();
+            dealWithUsWindow.Show();
             Close();
         }
 
         private void Onas_Click(object sender, RoutedEventArgs e)
         {
-            AboutUsWindow Window = new AboutUsWindow();
-            Window.Show();
+            AboutUsWindow aboutUsWindow = new AboutUsWindow();
+            aboutUsWindow.Show();
             Close();
         }
 
         private void GoToMasterWorksWindow(object sender, RoutedEventArgs e)
         {
-            MasterWorksWindow Window = new MasterWorksWindow();
-            Window.Show();
+            MasterWorksWindow masterWorksWindow = new MasterWorksWindow();
+            masterWorksWindow.Show();
             Close();
+        }
+
+        private void OnPostReview(object sender, RoutedEventArgs e)
+        {
+            if(App.Worker != null)
+            {
+                MessageBox.Show("Только клиенты могут оставлять отзывы, вы сотрудник!");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(ReviewText.Text))
+            {
+                MessageBox.Show("Введите отзыв");
+            }
+            else
+            {
+                try
+                {
+                    using (BeautyBaseEntities entities = new BeautyBaseEntities())
+                    {
+                        entities.Отзыв.Add(new Отзыв
+                        {
+                            ID_клиента = App.Customer.ID_клиента,
+                            Текст = ReviewText.Text,
+                            Дата_публикации = DateTime.Now
+                        });
+                        entities.SaveChanges();
+                    }
+                    MessageBox.Show("Отзыв опубликован!");
+                    ReviewText.Text = string.Empty;
+                    LoadReviewsAsync();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }

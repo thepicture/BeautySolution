@@ -144,6 +144,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Отзывы о нас"
                            Margin="10"
@@ -172,13 +173,20 @@
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding Клиент.ФИО, TargetNullValue=Аноним}"
-                                               FontWeight="Bold"
-                                               Margin="10" />
-                                    <TextBlock Text="{Binding Дата_публикации, StringFormat={}{0:yyyy-MM-dd hh\:mm}}"
-                                               HorizontalAlignment="Right"
-                                               FontSize="10"
-                                               Margin="10" />
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Клиент.ФИО, TargetNullValue=Аноним}"
+                                                   FontWeight="Bold"
+                                                   Margin="10" />
+                                        <TextBlock Text="{Binding Дата_публикации, StringFormat={}{0:yyyy-MM-dd hh\:mm}}"
+                                                   HorizontalAlignment="Right"
+                                                   FontSize="10"
+                                                   Margin="10" 
+                                                   Grid.Column="1"/>
+                                    </Grid>
                                     <TextBlock Text="{Binding Текст}"
                                                Grid.Row="1"
                                                Margin="10"
@@ -188,6 +196,20 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox materialDesign:HintAssist.Hint="Введите отзыв"
+                             Margin="5"
+                             TextWrapping="Wrap"
+                             Name="ReviewText" />
+                    <Button Click="OnPostReview"
+                            Content="Отправить"
+                            Grid.Row="1"
+                            Margin="5" />
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

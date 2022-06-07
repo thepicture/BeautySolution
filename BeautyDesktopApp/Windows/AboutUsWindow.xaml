@@ -29,8 +29,9 @@
                     FontSize="16" />
             <TextBox Text="РЕЖИМ РАБОТЫ: &#xD;&#xA;Пн,вт,ср,чт,пт,сб &#xD;&#xA;Пн-Пт с 10.00 до 21.00 &#xD;&#xA;Сб с 10.00 до 20.00 &#xD;&#xA;Вс - выходной"
                      Background="White"
+                     IsReadOnly="True"
                      Margin="88,10,457.6,273"
-                     FontSize="18"
+                     FontSize="15"
                      FontFamily="Showcard Gothic"
                      FontWeight="Bold"
                      TextChanged="TextBox_TextChanged"

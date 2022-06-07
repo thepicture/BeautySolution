@@ -65,9 +65,11 @@
     <Reference Include="PropertyChanged, Version=3.4.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.3.4.1\lib\net40\PropertyChanged.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -164,8 +166,8 @@
     <Compile Include="Windows\ServicesWindow.xaml.cs">
       <DependentUpon>ServicesWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MakeOrderWindow.xaml.cs">
-      <DependentUpon>MakeOrderWindow.xaml</DependentUpon>
+    <Compile Include="Windows\DealWithUsWindow.xaml.cs">
+      <DependentUpon>DealWithUsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AboutUsWindow.xaml.cs">
       <DependentUpon>AboutUsWindow.xaml</DependentUpon>
@@ -205,7 +207,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MakeOrderWindow.xaml">
+    <Page Include="Windows\DealWithUsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

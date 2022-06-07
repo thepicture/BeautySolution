@@ -41,7 +41,7 @@
           <Property Name="ID_отзыва" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_клиента" Type="int" Nullable="false" />
           <Property Name="Текст" Type="nvarchar" MaxLength="1024" Nullable="false" />
-          <Property Name="Дата_публикации" Type="date" Nullable="false" />
+          <Property Name="Дата_публикации" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Работник">
           <Key>
@@ -260,7 +260,7 @@
           <Property Name="ID_отзыва" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_клиента" Type="Int32" Nullable="false" />
           <Property Name="Текст" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="Дата_публикации" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Дата_публикации" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Клиент" Relationship="BeautyBaseModel.FK_Отзыв_Клиент" FromRole="Отзыв" ToRole="Клиент" />
         </EntityType>
         <EntityType Name="Работник">

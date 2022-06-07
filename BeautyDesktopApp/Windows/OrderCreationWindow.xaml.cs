@@ -98,7 +98,7 @@ namespace BeautyDesktopApp.Windows
                     entities.Entry(CurrentOrder).State = EntityState.Added;
                     entities.SaveChanges();
 
-                    MakeOrderWindow makeOrderWindow = new MakeOrderWindow();
+                    DealWithUsWindow makeOrderWindow = new DealWithUsWindow();
                     makeOrderWindow.Show();
                     Close();
 
