@@ -37,7 +37,6 @@
             <TextBox Text="{Binding ElementName=Window, Path=Login, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
                      materialDesign:HintAssist.Hint="Введите логин"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Grid.Row="1"
                      Margin="5" />
             <controls:BindablePasswordBox BindableText="{Binding ElementName=Window, Path=Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"

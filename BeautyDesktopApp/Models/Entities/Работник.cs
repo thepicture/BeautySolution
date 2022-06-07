@@ -17,19 +17,20 @@ namespace BeautyDesktopApp.Models.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Работник()
         {
-            this.Запись_на_услугу = new HashSet<Запись_на_услугу>();
+            this.Услуга = new HashSet<Услуга>();
         }
     
         public int ID_раб { get; set; }
+        public int ID_должности { get; set; }
         public string ФИО { get; set; }
-        public System.DateTime День_рождение { get; set; }
+        public System.DateTime Дата_рождения { get; set; }
         public int Номер_телефона { get; set; }
-        public int Стаж_работы { get; set; }
+        public int Стаж_работы_в_годах { get; set; }
         public string Логин { get; set; }
         public string Пароль { get; set; }
     
         public virtual Должность Должность { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Запись_на_услугу> Запись_на_услугу { get; set; }
+        public virtual ICollection<Услуга> Услуга { get; set; }
     }
 }

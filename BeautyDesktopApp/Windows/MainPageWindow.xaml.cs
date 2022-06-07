@@ -1,33 +1,41 @@
-﻿using System;
+﻿using BeautyDesktopApp.Models.Entities;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BeautyDesktopApp.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Window1.xaml
     /// </summary>
-    public partial class MainPageWindow : Window
+    public partial class MainPageWindow : Window, INotifyPropertyChanged
     {
+        public ObservableCollection<Отзыв> Reviews { get; set; }
+
         public MainPageWindow()
         {
             InitializeComponent();
+            try
+            {
+                using (BeautyBaseEntities entities = new BeautyBaseEntities())
+                {
+                    List<Отзыв> reviews = entities.Отзыв
+                        .Include(r => r.Клиент)
+                        .ToList();
+                    Reviews = new ObservableCollection<Отзыв>(reviews);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void Uslugi_Click(object sender, RoutedEventArgs e)
         {

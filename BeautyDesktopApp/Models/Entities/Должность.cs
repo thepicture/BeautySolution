@@ -14,9 +14,16 @@ namespace BeautyDesktopApp.Models.Entities
     
     public partial class Должность
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Должность()
+        {
+            this.Работник = new HashSet<Работник>();
+        }
+    
         public int ID_должности { get; set; }
         public string Название { get; set; }
     
-        public virtual Работник Работник { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Работник> Работник { get; set; }
     }
 }

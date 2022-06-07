@@ -1,4 +1,5 @@
 ﻿using BeautyDesktopApp.Models.Entities;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -52,20 +53,27 @@ namespace BeautyDesktopApp.Windows
 
         private void OnLoginClick(object sender, RoutedEventArgs e)
         {
-            using (BeautyBaseEntities entities = new BeautyBaseEntities())
+            try
             {
-                var customer = entities.Клиент.FirstOrDefault(c => c.Логин == Login && c.Пароль == Password);
-                if (customer is Клиент)
+                using (BeautyBaseEntities entities = new BeautyBaseEntities())
                 {
-                    MainPageWindow Window = new MainPageWindow();
-                    Window.Show();
-                    Close();
-                    MessageBox.Show("Добро пожаловать!");
+                    var customer = entities.Клиент.FirstOrDefault(c => c.Логин == Login && c.Пароль == Password);
+                    if (customer is Клиент)
+                    {
+                        MainPageWindow Window = new MainPageWindow();
+                        Window.Show();
+                        Close();
+                        MessageBox.Show("Добро пожаловать!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Неверный логин или пароль");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Неверный логин или пароль");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 

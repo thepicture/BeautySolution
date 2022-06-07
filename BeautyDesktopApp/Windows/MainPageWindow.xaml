@@ -6,21 +6,189 @@
         xmlns:local="clr-namespace:BeautyDesktopApp"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Главная страница" Height="450" Width="800" ResizeMode="CanResize">
-    <Grid Background="#FFDB8B" Margin="0,0,-0.4,-2">
-        <Button x:Name="Uslugi" Click="Uslugi_Click" Content="Услуги" Margin="137,0,562,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
-        <Button x:Name="Onas" Content="О нас" Click="Onas_Click" Margin="254,0,445,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
-        <Button x:Name="Master" Content="Работы мастера" Click="Master_Click" Margin="354,0,256,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
-        <Button x:Name="Svyaz" Click="Svyaz_Click" Content="Связь с нами" Margin="554,0,83,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
-        <TextBlock Text="Добро пожаловать!" Margin="9,5,657,385"/>
-        <TextBlock Text="ВНИМАНИЕ! Совсем скоро! 01.09.2022года наш Салон красоты введет несколько новых услуг!" Margin="23,41,10,349"  HorizontalAlignment="Center" TextAlignment="Center" Width="761" FontSize="16" TextDecorations="Underline" FontWeight="Bold"/>
-        <Image Margin="137,73,543,266" Source="/Resources//Resources/Губы.jpg" Stretch="Fill"/>
-        <TextBlock Text="* Увеличение/увлажнение губ - 4000р." Margin="316,95,109,277" FontSize="16" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
-        <Image Margin="137,163,543,171" Source="/Resources/djkjcs ,jnjrc.jpg" Stretch="Fill"/>
-        <TextBlock Text="* Ботокс волос - 6500р." Margin="316,175,109,197" FontSize="16" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
-        <Image Margin="137,256,544,74" Source="/Resources/кератин.jpg" Stretch="Fill"/>
-        <TextBlock Text="* Кератиновое восстановление волос - 1000р." Margin="316,273,109,99" FontSize="16" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
-        <TextBlock Margin="0,353,33,10"  HorizontalAlignment="Center" TextAlignment="Center" Width="761" FontSize="16" TextDecorations="Underline" FontWeight="Bold"><Run Text="СКИДКА 30% на первое посещение новых услуг! ПРОМОКОД 'Красота'"/><LineBreak/><Run Text="А также при посещении в праздничные дни, скидка 15% по промокоду &quot;ПРАЗДНИК&quot;"/></TextBlock>
-
+        Title="Главная страница"
+        Height="450"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Name="Window">
+    <Grid Background="#FFDB8B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Добро пожаловать!"
+                       Margin="10,0,0,0"
+                       VerticalAlignment="Center" />
+            <UniformGrid Columns="4"
+                         Grid.Column="1">
+                <Button x:Name="Uslugi"
+                        Click="Uslugi_Click"
+                        Content="Услуги"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        FontFamily="Verdana" />
+                <Button x:Name="Onas"
+                        Content="О нас"
+                        Click="Onas_Click"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        FontFamily="Verdana" />
+                <Button x:Name="Master"
+                        Content="Работы мастера"
+                        Click="Master_Click"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        FontFamily="Verdana" />
+                <Button x:Name="Svyaz"
+                        Click="Svyaz_Click"
+                        Content="Связь с нами"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        FontFamily="Verdana" />
+            </UniformGrid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="ВНИМАНИЕ! Совсем скоро! 01.09.2022 года наш Салон красоты введет несколько новых услуг!"
+                           TextWrapping="Wrap"
+                           Margin="10"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="16"
+                           TextDecorations="Underline"
+                           FontWeight="Bold" />
+                <UniformGrid Rows="3"
+                             Grid.Row="1">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Resources/Губы.jpg"
+                               Width="100"
+                               Height="100"
+                               Stretch="Uniform" />
+                        <TextBlock Text="* Увеличение/увлажнение губ - 4000р."
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   Margin="10"
+                                   FontFamily="Yu Gothic UI Semibold"
+                                   FontWeight="Bold"
+                                   Grid.Column="1" />
+                    </Grid>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Resources/djkjcs ,jnjrc.jpg"
+                               Width="100"
+                               Height="100"
+                               Stretch="Uniform" />
+                        <TextBlock Text="* Ботокс волос - 6500р."
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   Margin="10"
+                                   FontFamily="Yu Gothic UI Semibold"
+                                   FontWeight="Bold"
+                                   Grid.Column="1" />
+                    </Grid>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Resources/кератин.jpg"
+                               Width="100"
+                               Height="100"
+                               Stretch="UniformToFill" />
+                        <TextBlock Text="* Кератиновое восстановление волос - 1000р."
+                                   TextWrapping="Wrap"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   Margin="10"
+                                   FontFamily="Yu Gothic UI Semibold"
+                                   FontWeight="Bold"
+                                   Grid.Column="1" />
+                    </Grid>
+                </UniformGrid>
+                <TextBlock HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="15"
+                           TextDecorations="Underline"
+                           Grid.Row="2"
+                           FontWeight="Bold"
+                           TextWrapping="Wrap">
+                    <TextBlock.Inlines>
+                        <Run Text="СКИДКА 30% на первое посещение новых услуг! ПРОМОКОД 'Красота'" />
+                        <LineBreak />
+                        <Run Text="А также при посещении в праздничные дни, скидка 15% по промокоду &quot;ПРАЗДНИК&quot;" />
+                    </TextBlock.Inlines>
+                </TextBlock>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Отзывы о нас"
+                           Margin="10"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="16"
+                           TextDecorations="Underline"
+                           FontWeight="Bold" />
+                <ListView ItemsSource="{Binding ElementName=Window, Path=Reviews}"
+                          Grid.Row="1"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Card MinWidth="200"
+                                                 Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Клиент.ФИО, TargetNullValue=Аноним}"
+                                               FontWeight="Bold"
+                                               Margin="10" />
+                                    <TextBlock Text="{Binding Дата_публикации, StringFormat={}{0:yyyy-MM-dd hh\:mm}}"
+                                               HorizontalAlignment="Right"
+                                               FontSize="10"
+                                               Margin="10" />
+                                    <TextBlock Text="{Binding Текст}"
+                                               Grid.Row="1"
+                                               Margin="10"
+                                               TextWrapping="Wrap" />
+                                </Grid>
+                            </materialDesign:Card>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -18,16 +18,19 @@ namespace BeautyDesktopApp.Models.Entities
         public Клиент()
         {
             this.Запись_на_услугу = new HashSet<Запись_на_услугу>();
+            this.Отзыв = new HashSet<Отзыв>();
         }
     
         public int ID_клиента { get; set; }
         public string ФИО { get; set; }
-        public System.DateTime Дата_рождения { get; set; }
-        public int Номер_телефона { get; set; }
+        public Nullable<System.DateTime> Дата_рождения { get; set; }
+        public Nullable<int> Номер_телефона { get; set; }
         public string Логин { get; set; }
         public string Пароль { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Запись_на_услугу> Запись_на_услугу { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Отзыв> Отзыв { get; set; }
     }
 }

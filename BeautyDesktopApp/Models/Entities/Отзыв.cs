@@ -12,14 +12,13 @@ namespace BeautyDesktopApp.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Запись_на_услугу
+    public partial class Отзыв
     {
-        public int ID_услуги { get; set; }
+        public int ID_отзыва { get; set; }
         public int ID_клиента { get; set; }
-        public System.DateTime Дата_начала { get; set; }
-        public System.TimeSpan Время_начала { get; set; }
+        public string Текст { get; set; }
+        public System.DateTime Дата_публикации { get; set; }
     
         public virtual Клиент Клиент { get; set; }
-        public virtual Услуга Услуга { get; set; }
     }
 }

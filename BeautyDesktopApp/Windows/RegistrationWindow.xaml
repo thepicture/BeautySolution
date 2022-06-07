@@ -6,46 +6,71 @@
         xmlns:local="clr-namespace:BeautyDesktopApp"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:BeautyDesktopApp.Controls"
         Title="Регистрация"
         Height="492"
-        Width="394">
+        Width="394"
+        WindowStartupLocation="CenterScreen"
+        Name="Window">
     <Grid Background="Coral">
-        <TextBox Grid.Row="0"
-                 Grid.Column="0"
-                 Text="РЕГИСТРАЦИЯ"
-                 Margin="54,32,45,366.4"
-                 FontSize="24"
-                 RenderTransformOrigin="0.73,0.693"
-                 FontFamily="Yu Gothic Light"
-                 TextDecorations="Underline"
-                 FontWeight="Bold"
-                 FontStyle="Italic"
-                 TextAlignment="Center"
-                 Background="PeachPuff" />
-        <!--<TextBox x:Name="textboxlogin" Text="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="54,101,45,301.4"/>-->
-        <TextBox x:Name="textboxlogin"
-                 materialDesign:HintAssist.Hint="Введите логин"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 Margin="54,101,45,301.4" />
-        <PasswordBox x:Name="textboxpass"
-                     materialDesign:HintAssist.Hint="Введите пароль"
-                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                     Margin="53,188,44,208.4" />
-        <PasswordBox x:Name="textboxpass1"
-                     materialDesign:HintAssist.Hint="Повторите пароль"
-                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                     Margin="54,273,44.2,115.4" />
-        <Button Content="Зарегистрироваться"
-                Click="Button_Click"
-                Margin="91,360,106.2,50.4"
-                Height="Auto"
-                Background="#423189" />
-        <Button Content="Назад"
-                Click="Button_Click_1"
-                Margin="240,417,10.2,5.4"
-                Height="Auto"
-                Background="Coral"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                FontSize="16" />
+        <Grid Margin="40"
+              MaxWidth="500"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBox IsReadOnly="True"
+                     Margin="5"
+                     Text="РЕГИСТРАЦИЯ"
+                     FontSize="24"
+                     FontFamily="Yu Gothic Light"
+                     TextDecorations="Underline"
+                     FontWeight="Bold"
+                     FontStyle="Italic"
+                     TextAlignment="Center"
+                     Background="PeachPuff" />
+            <TextBox Text="{Binding ElementName=Window, Path=Login, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
+                     materialDesign:HintAssist.Hint="Введите логин"
+                     Grid.Row="1"
+                     Margin="5" />
+            <controls:BindablePasswordBox BindableText="{Binding ElementName=Window, Path=FirstPassword, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                          materialDesign:HintAssist.Hint="Введите пароль"
+                                          Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
+                                          Grid.Row="2"
+                                          Margin="5" />
+            <controls:BindablePasswordBox BindableText="{Binding ElementName=Window, Path=SecondPassword, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                          materialDesign:HintAssist.Hint="Повторите пароль"
+                                          Validation.ErrorTemplate="{StaticResource TextBoxErrorTemplate}"
+                                          Grid.Row="3"
+                                          Margin="6" />
+            <Button Content="Зарегистрироваться"
+                    Height="Auto"
+                    IsEnabled="{Binding IsCanRegister, ElementName=Window}"
+                    Click="OnRegisterClick"
+                    Grid.Row="4"
+                    Margin="5,15,5,5">
+                <Button.Effect>
+                    <DropShadowEffect BlurRadius="20"
+                                      Color="Gray"
+                                      ShadowDepth="0" />
+                </Button.Effect>
+            </Button>
+            <Button Content="Назад"
+                    HorizontalAlignment="Right"
+                    Click="OnGoBack"
+                    FontSize="16"
+                    FontFamily="Yu Gothic Medium"
+                    Background="Coral"
+                    Height="Auto"
+                    Style="{StaticResource MaterialDesignFlatButton}"
+                    Grid.Row="5"
+                    Margin="5,20,5,5" />
+        </Grid>
     </Grid>
 </Window>
