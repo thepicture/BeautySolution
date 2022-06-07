@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTemplate x:Key="TextBoxErrorTemplate">
+        <Grid>
+            <Grid Background="Red"
+                  Opacity=".5"
+                  IsHitTestVisible="False" />
+            <AdornedElementPlaceholder>
+                <AdornedElementPlaceholder.ToolTip>
+                    <ToolTip Content="Это поле введено некорректно!" />
+                </AdornedElementPlaceholder.ToolTip>
+            </AdornedElementPlaceholder>
+        </Grid>
+    </ControlTemplate>
+</ResourceDictionary>

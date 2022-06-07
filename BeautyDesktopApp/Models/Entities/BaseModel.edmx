@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BeautyBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="ID_должности" />
+          </Key>
+          <Property Name="ID_должности" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Запись_на_услугу">
+          <Key>
+            <PropertyRef Name="ID_зну" />
+          </Key>
+          <Property Name="ID_услуги" Type="int" Nullable="false" />
+          <Property Name="ID_работника" Type="int" Nullable="false" />
+          <Property Name="ID_клиента" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="Время" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ID_зну" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="ID_клиента" />
+          </Key>
+          <Property Name="ID_клиента" Type="int" Nullable="false" />
+          <Property Name="ФИО" Type="text" Nullable="false" />
+          <Property Name="Дата_рождения" Type="date" Nullable="false" />
+          <Property Name="Номер_телефона" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Работник">
+          <Key>
+            <PropertyRef Name="ID_раб" />
+          </Key>
+          <Property Name="ID_раб" Type="int" Nullable="false" />
+          <Property Name="ФИО" Type="text" Nullable="false" />
+          <Property Name="День_рождение" Type="date" Nullable="false" />
+          <Property Name="Номер_телефона" Type="int" Nullable="false" />
+          <Property Name="Стаж_работы" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Услуга">
+          <Key>
+            <PropertyRef Name="ID_услуги" />
+          </Key>
+          <Property Name="ID_услуги" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Стоимость" Type="int" Nullable="false" />
+          <Property Name="Длительность" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Должность_Работник">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="1" />
+          <End Role="Должность" Type="Self.Должность" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="ID_раб" />
+            </Principal>
+            <Dependent Role="Должность">
+              <PropertyRef Name="ID_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запись_на_услугу_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="1" />
+          <End Role="Запись_на_услугу" Type="Self.Запись_на_услугу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="ID_клиента" />
+            </Principal>
+            <Dependent Role="Запись_на_услугу">
+              <PropertyRef Name="ID_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запись_на_услугу_Работник">
+          <End Role="Работник" Type="Self.Работник" Multiplicity="1" />
+          <End Role="Запись_на_услугу" Type="Self.Запись_на_услугу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="ID_раб" />
+            </Principal>
+            <Dependent Role="Запись_на_услугу">
+              <PropertyRef Name="ID_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запись_на_услугу_Услуга">
+          <End Role="Услуга" Type="Self.Услуга" Multiplicity="1" />
+          <End Role="Запись_на_услугу" Type="Self.Запись_на_услугу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуга">
+              <PropertyRef Name="ID_услуги" />
+            </Principal>
+            <Dependent Role="Запись_на_услугу">
+              <PropertyRef Name="ID_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BeautyBaseModelStoreContainer">
+          <EntitySet Name="Должность" EntityType="Self.Должность" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Запись_на_услугу" EntityType="Self.Запись_на_услугу" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Работник" EntityType="Self.Работник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Услуга" EntityType="Self.Услуга" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Должность_Работник" Association="Self.FK_Должность_Работник">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Должность" EntitySet="Должность" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запись_на_услугу_Клиент" Association="Self.FK_Запись_на_услугу_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="Запись_на_услугу" EntitySet="Запись_на_услугу" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запись_на_услугу_Работник" Association="Self.FK_Запись_на_услугу_Работник">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Запись_на_услугу" EntitySet="Запись_на_услугу" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запись_на_услугу_Услуга" Association="Self.FK_Запись_на_услугу_Услуга">
+            <End Role="Услуга" EntitySet="Услуга" />
+            <End Role="Запись_на_услугу" EntitySet="Запись_на_услугу" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BeautyBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BeautyBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Должность" EntityType="BeautyBaseModel.Должность" />
+          <EntitySet Name="Запись_на_услугу" EntityType="BeautyBaseModel.Запись_на_услугу" />
+          <EntitySet Name="Клиент" EntityType="BeautyBaseModel.Клиент" />
+          <EntitySet Name="Работник" EntityType="BeautyBaseModel.Работник" />
+          <EntitySet Name="Услуга" EntityType="BeautyBaseModel.Услуга" />
+          <AssociationSet Name="FK_Должность_Работник" Association="BeautyBaseModel.FK_Должность_Работник">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Должность" EntitySet="Должность" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запись_на_услугу_Клиент" Association="BeautyBaseModel.FK_Запись_на_услугу_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="Запись_на_услугу" EntitySet="Запись_на_услугу" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запись_на_услугу_Работник" Association="BeautyBaseModel.FK_Запись_на_услугу_Работник">
+            <End Role="Работник" EntitySet="Работник" />
+            <End Role="Запись_на_услугу" EntitySet="Запись_на_услугу" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запись_на_услугу_Услуга" Association="BeautyBaseModel.FK_Запись_на_услугу_Услуга">
+            <End Role="Услуга" EntitySet="Услуга" />
+            <End Role="Запись_на_услугу" EntitySet="Запись_на_услугу" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="ID_должности" />
+          </Key>
+          <Property Name="ID_должности" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Работник" Relationship="BeautyBaseModel.FK_Должность_Работник" FromRole="Должность" ToRole="Работник" />
+        </EntityType>
+        <EntityType Name="Запись_на_услугу">
+          <Key>
+            <PropertyRef Name="ID_зну" />
+          </Key>
+          <Property Name="ID_услуги" Type="Int32" Nullable="false" />
+          <Property Name="ID_работника" Type="Int32" Nullable="false" />
+          <Property Name="ID_клиента" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Время" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ID_зну" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Клиент" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Клиент" FromRole="Запись_на_услугу" ToRole="Клиент" />
+          <NavigationProperty Name="Работник" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Работник" FromRole="Запись_на_услугу" ToRole="Работник" />
+          <NavigationProperty Name="Услуга" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Услуга" FromRole="Запись_на_услугу" ToRole="Услуга" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="ID_клиента" />
+          </Key>
+          <Property Name="ID_клиента" Type="Int32" Nullable="false" />
+          <Property Name="ФИО" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Дата_рождения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Номер_телефона" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Запись_на_услугу" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Клиент" FromRole="Клиент" ToRole="Запись_на_услугу" />
+        </EntityType>
+        <EntityType Name="Работник">
+          <Key>
+            <PropertyRef Name="ID_раб" />
+          </Key>
+          <Property Name="ID_раб" Type="Int32" Nullable="false" />
+          <Property Name="ФИО" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="День_рождение" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Номер_телефона" Type="Int32" Nullable="false" />
+          <Property Name="Стаж_работы" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Должность" Relationship="BeautyBaseModel.FK_Должность_Работник" FromRole="Работник" ToRole="Должность" />
+          <NavigationProperty Name="Запись_на_услугу" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Работник" FromRole="Работник" ToRole="Запись_на_услугу" />
+        </EntityType>
+        <EntityType Name="Услуга">
+          <Key>
+            <PropertyRef Name="ID_услуги" />
+          </Key>
+          <Property Name="ID_услуги" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Стоимость" Type="Int32" Nullable="false" />
+          <Property Name="Длительность" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Запись_на_услугу" Relationship="BeautyBaseModel.FK_Запись_на_услугу_Услуга" FromRole="Услуга" ToRole="Запись_на_услугу" />
+        </EntityType>
+        <Association Name="FK_Должность_Работник">
+          <End Type="BeautyBaseModel.Работник" Role="Работник" Multiplicity="1" />
+          <End Type="BeautyBaseModel.Должность" Role="Должность" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="ID_раб" />
+            </Principal>
+            <Dependent Role="Должность">
+              <PropertyRef Name="ID_должности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запись_на_услугу_Клиент">
+          <End Type="BeautyBaseModel.Клиент" Role="Клиент" Multiplicity="1" />
+          <End Type="BeautyBaseModel.Запись_на_услугу" Role="Запись_на_услугу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="ID_клиента" />
+            </Principal>
+            <Dependent Role="Запись_на_услугу">
+              <PropertyRef Name="ID_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запись_на_услугу_Работник">
+          <End Type="BeautyBaseModel.Работник" Role="Работник" Multiplicity="1" />
+          <End Type="BeautyBaseModel.Запись_на_услугу" Role="Запись_на_услугу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Работник">
+              <PropertyRef Name="ID_раб" />
+            </Principal>
+            <Dependent Role="Запись_на_услугу">
+              <PropertyRef Name="ID_работника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запись_на_услугу_Услуга">
+          <End Type="BeautyBaseModel.Услуга" Role="Услуга" Multiplicity="1" />
+          <End Type="BeautyBaseModel.Запись_на_услугу" Role="Запись_на_услугу" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуга">
+              <PropertyRef Name="ID_услуги" />
+            </Principal>
+            <Dependent Role="Запись_на_услугу">
+              <PropertyRef Name="ID_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BeautyBaseModelStoreContainer" CdmEntityContainer="BeautyBaseEntities">
+          <EntitySetMapping Name="Должность">
+            <EntityTypeMapping TypeName="BeautyBaseModel.Должность">
+              <MappingFragment StoreEntitySet="Должность">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID_должности" ColumnName="ID_должности" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Запись_на_услугу">
+            <EntityTypeMapping TypeName="BeautyBaseModel.Запись_на_услугу">
+              <MappingFragment StoreEntitySet="Запись_на_услугу">
+                <ScalarProperty Name="ID_зну" ColumnName="ID_зну" />
+                <ScalarProperty Name="Время" ColumnName="Время" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="ID_клиента" ColumnName="ID_клиента" />
+                <ScalarProperty Name="ID_работника" ColumnName="ID_работника" />
+                <ScalarProperty Name="ID_услуги" ColumnName="ID_услуги" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиент">
+            <EntityTypeMapping TypeName="BeautyBaseModel.Клиент">
+              <MappingFragment StoreEntitySet="Клиент">
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер_телефона" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="ID_клиента" ColumnName="ID_клиента" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Работник">
+            <EntityTypeMapping TypeName="BeautyBaseModel.Работник">
+              <MappingFragment StoreEntitySet="Работник">
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Стаж_работы" ColumnName="Стаж_работы" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер_телефона" />
+                <ScalarProperty Name="День_рождение" ColumnName="День_рождение" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="ID_раб" ColumnName="ID_раб" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Услуга">
+            <EntityTypeMapping TypeName="BeautyBaseModel.Услуга">
+              <MappingFragment StoreEntitySet="Услуга">
+                <ScalarProperty Name="Длительность" ColumnName="Длительность" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ID_услуги" ColumnName="ID_услуги" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

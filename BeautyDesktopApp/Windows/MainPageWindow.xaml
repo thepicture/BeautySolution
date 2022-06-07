@@ -1,0 +1,26 @@
+﻿<Window x:Class="BeautyDesktopApp.Windows.MainPageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautyDesktopApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Главная страница" Height="450" Width="800" ResizeMode="CanResize">
+    <Grid Background="#FFDB8B" Margin="0,0,-0.4,-2">
+        <Button x:Name="Uslugi" Click="Uslugi_Click" Content="Услуги" Margin="137,0,562,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
+        <Button x:Name="Onas" Content="О нас" Click="Onas_Click" Margin="254,0,445,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
+        <Button x:Name="Master" Content="Работы мастера" Click="Master_Click" Margin="354,0,256,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
+        <Button x:Name="Svyaz" Click="Svyaz_Click" Content="Связь с нами" Margin="554,0,83,390" Style="{StaticResource MaterialDesignFlatButton}" FontSize="16" FontFamily="Verdana"/>
+        <TextBlock Text="Добро пожаловать!" Margin="9,5,657,385"/>
+        <TextBlock Text="ВНИМАНИЕ! Совсем скоро! 01.09.2022года наш Салон красоты введет несколько новых услуг!" Margin="23,41,10,349"  HorizontalAlignment="Center" TextAlignment="Center" Width="761" FontSize="16" TextDecorations="Underline" FontWeight="Bold"/>
+        <Image Margin="137,73,543,266" Source="/Resources//Resources/Губы.jpg" Stretch="Fill"/>
+        <TextBlock Text="* Увеличение/увлажнение губ - 4000р." Margin="316,95,109,277" FontSize="16" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
+        <Image Margin="137,163,543,171" Source="/Resources/djkjcs ,jnjrc.jpg" Stretch="Fill"/>
+        <TextBlock Text="* Ботокс волос - 6500р." Margin="316,175,109,197" FontSize="16" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
+        <Image Margin="137,256,544,74" Source="/Resources/кератин.jpg" Stretch="Fill"/>
+        <TextBlock Text="* Кератиновое восстановление волос - 1000р." Margin="316,273,109,99" FontSize="16" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
+        <TextBlock Margin="0,353,33,10"  HorizontalAlignment="Center" TextAlignment="Center" Width="761" FontSize="16" TextDecorations="Underline" FontWeight="Bold"><Run Text="СКИДКА 30% на первое посещение новых услуг! ПРОМОКОД 'Красота'"/><LineBreak/><Run Text="А также при посещении в праздничные дни, скидка 15% по промокоду &quot;ПРАЗДНИК&quot;"/></TextBlock>
+
+    </Grid>
+</Window>
