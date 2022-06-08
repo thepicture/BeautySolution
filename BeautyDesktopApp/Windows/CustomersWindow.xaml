@@ -143,7 +143,8 @@
                                                             Height="25"
                                                             Foreground="Black" />
                     </Grid>
-                    <Button Content="Сохранить"
+                    <Button Content="Добавить нового клиента"
+                            Name="AddCustomerButton"
                             IsEnabled="{Binding ElementName=Window, Path=Customer.IsValid}"
                             Click="OnCustomerSave"
                             Grid.Row="5"

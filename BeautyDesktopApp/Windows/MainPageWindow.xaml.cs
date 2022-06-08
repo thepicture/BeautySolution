@@ -113,5 +113,12 @@ namespace BeautyDesktopApp.Windows
             customersWindow.Show();
             Close();
         }
+
+        private void GoToScheduleWindow(object sender, RoutedEventArgs e)
+        {
+            ScheduleWindow scheduleWindow = new ScheduleWindow();
+            scheduleWindow.Show();
+            Close();
+        }
     }
 }

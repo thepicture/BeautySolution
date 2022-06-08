@@ -1,0 +1,45 @@
+﻿<Window x:Class="BeautyDesktopApp.Windows.ScheduleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautyDesktopApp.Windows"
+        mc:Ignorable="d"
+        Title="ScheduleWindow"
+        Height="750"
+        Width="1200"
+        Name="Window"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFDB8B">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Расписание на 7 дней"
+                   FontSize="15"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"
+                   Margin="5" />
+        <Button Content="На главную"
+                Click="GoToMainPageWindow"
+                HorizontalAlignment="Right"
+                Margin="5" />
+        <DataGrid Name="ScheduleGrid"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  ColumnWidth="auto">
+            <DataGrid.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="14" />
+                </ItemsPanelTemplate>
+            </DataGrid.ItemsPanel>
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DataContext[0], RelativeSource={RelativeSource AncestorType=DataGridRow}}" />
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+    </Grid>
+</Window>

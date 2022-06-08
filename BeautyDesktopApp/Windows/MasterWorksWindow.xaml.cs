@@ -1,9 +1,11 @@
 ﻿using BeautyDesktopApp.Models.Entities;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Windows;
 
@@ -150,6 +152,32 @@ namespace BeautyDesktopApp.Windows
             MainPageWindow Window = new MainPageWindow();
             Window.Show();
             Close();
+        }
+
+        private void OnImageAttach(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Услуга service = ((dynamic)sender).DataContext;
+            OpenFileDialog imageDialog = new OpenFileDialog
+            {
+                Title = "Выберите картинку"
+            };
+            bool? isSelectedFile = imageDialog.ShowDialog();
+            if (isSelectedFile.HasValue && isSelectedFile.Value)
+            {
+                try
+                {
+                    using (BeautyBaseEntities entities = new BeautyBaseEntities())
+                    {
+                        entities.Услуга.First(c => c.ID_услуги == service.ID_услуги).Картинка = File.ReadAllBytes(imageDialog.FileName);
+                        entities.SaveChanges();
+                        FilterServicesAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }

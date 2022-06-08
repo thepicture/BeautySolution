@@ -15,7 +15,8 @@
           Name="PrintArea">
         <Viewbox Margin="10">
             <Grid MaxWidth="790"
-                  MaxHeight="420">
+                  MaxHeight="420"
+                  Name="VisitCardGrid">
                 <TextBlock Text="Связь с нами/Запись на услугу"
                            Margin="436,10,-20.4,374"
                            FontFamily="Yu Gothic UI Semibold"

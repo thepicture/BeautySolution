@@ -6,7 +6,6 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace BeautyDesktopApp.Windows
 {
@@ -120,16 +119,15 @@ namespace BeautyDesktopApp.Windows
                 ФИО = editingCustomer.ФИО,
                 Номер_телефона = editingCustomer.Номер_телефона,
             };
+            AddCustomerButton.Content = "Обновить текущего клиента";
+            MessageBox.Show("Вы вошли в режим изменения");
         }
 
         private void OnAddNewCustomer(object sender, RoutedEventArgs e)
         {
             Customer = new Клиент();
-        }
-
-        private void OnPasswordChanged(object sender, RoutedEventArgs e)
-        {
-            Customer.Пароль = (sender as PasswordBox).Password;
+            AddCustomerButton.Content = "Добавить нового клиента";
+            MessageBox.Show("Поля подготовлены");
         }
     }
 }

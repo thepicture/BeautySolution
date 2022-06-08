@@ -108,11 +108,12 @@
                                     <ColumnDefinition Width="auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="/Resources/кератин.jpg"
+                                <Image Source="{Binding Картинка}"
                                        Height="100"
                                        Width="100"
                                        Stretch="Uniform"
-                                       Margin="10" />
+                                       Margin="10"
+                                       MouseLeftButtonDown="OnImageAttach"/>
                                 <Grid Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto" />

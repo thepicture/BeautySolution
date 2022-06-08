@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Главная страница"
-        Height="450"
-        Width="940"
+        Height="650"
+        Width="1200"
         WindowStartupLocation="CenterScreen"
         Name="Window">
     <Grid Background="#FFDB8B">
@@ -24,7 +24,7 @@
             <TextBlock Text="Добро пожаловать!"
                        Margin="10,0,0,0"
                        VerticalAlignment="Center" />
-            <UniformGrid Columns="5"
+            <UniformGrid Columns="6"
                          Grid.Column="1">
                 <Button x:Name="Uslugi"
                         Click="Uslugi_Click"
@@ -52,6 +52,11 @@
                         FontFamily="Verdana" />
                 <Button Click="GoToCustomersWindow"
                         Content="Клиенты"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16"
+                        FontFamily="Verdana" />
+                <Button Click="GoToScheduleWindow"
+                        Content="Расписание"
                         Style="{StaticResource MaterialDesignFlatButton}"
                         FontSize="16"
                         FontFamily="Verdana" />

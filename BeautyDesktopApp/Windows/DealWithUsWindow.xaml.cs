@@ -43,12 +43,37 @@ namespace BeautyDesktopApp.Windows
 
         private void PrintCommand(object sender, RoutedEventArgs e)
         {
+            DisableButtons();
             PrintDialog printDialog = new PrintDialog();
             bool? dialogResult = printDialog.ShowDialog();
             if (dialogResult.HasValue && dialogResult.Value)
             {
                 printDialog.PrintTicket.PageOrientation = PageOrientation.Landscape;
                 printDialog.PrintVisual(PrintArea, "Визитка салона красоты");
+            }
+            MessageBox.Show("Визитка распечатана!");
+            EnableButtons();
+        }
+
+        private void DisableButtons()
+        {
+            foreach (var child in VisitCardGrid.Children)
+            {
+                if (child is Button button)
+                {
+                    button.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private void EnableButtons()
+        {
+            foreach (var child in VisitCardGrid.Children)
+            {
+                if (child is Button button)
+                {
+                    button.Visibility = Visibility.Visible;
+                }
             }
         }
     }
