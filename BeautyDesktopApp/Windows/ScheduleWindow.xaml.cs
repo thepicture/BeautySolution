@@ -86,7 +86,6 @@ namespace BeautyDesktopApp.Windows
                 {
                     HeaderTemplate = headerTemplate,
                     CellTemplate = cellTemplate,
-                    Width = new DataGridLength(1, DataGridLengthUnitType.Star)
                 });
             }
         }

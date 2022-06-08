@@ -119,6 +119,7 @@ namespace BeautyDesktopApp.Windows
                 ФИО = editingCustomer.ФИО,
                 Номер_телефона = editingCustomer.Номер_телефона,
             };
+            CustomerPassword.BindablePassword.Password = editingCustomer.Пароль;
             AddCustomerButton.Content = "Обновить текущего клиента";
             MessageBox.Show("Вы вошли в режим изменения");
         }

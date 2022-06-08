@@ -98,9 +98,7 @@ namespace BeautyDesktopApp.Windows
                     entities.Entry(CurrentOrder).State = EntityState.Added;
                     entities.SaveChanges();
 
-                    DealWithUsWindow makeOrderWindow = new DealWithUsWindow();
-                    makeOrderWindow.Show();
-                    Close();
+                    GoBack();
 
                     MessageBox.Show("Вы записаны на услугу!");
                 }
@@ -111,9 +109,21 @@ namespace BeautyDesktopApp.Windows
             }
         }
 
+        private void GoBack()
+        {
+            DealWithUsWindow makeOrderWindow = new DealWithUsWindow();
+            makeOrderWindow.Show();
+            Close();
+        }
+
         private void OnTimeLoaded(object sender, RoutedEventArgs e)
         {
             (sender as TimePicker).SelectedTime = DateTime.Now;
+        }
+
+        private void OnGoBack(object sender, RoutedEventArgs e)
+        {
+            GoBack();
         }
     }
 }

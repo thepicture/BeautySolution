@@ -41,6 +41,7 @@
                                         Width="auto"
                                         Binding="{Binding Номер_телефона}" />
                     <DataGridTextColumn Header="Логин"
+                                        Width="100"
                                         Binding="{Binding Логин}" />
                     <DataGridTemplateColumn Header="Действие"
                                             Width="250">

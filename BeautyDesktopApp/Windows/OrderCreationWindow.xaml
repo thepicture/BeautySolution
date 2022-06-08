@@ -56,6 +56,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -141,6 +142,12 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>
+                    <Button Content="Назад"
+                            Click="OnGoBack"
+                            Grid.Row="6"
+                            Grid.ColumnSpan="2"
+                            Margin="5"
+                            Foreground="White" />
                 </Grid>
             </GroupBox>
         </UniformGrid>
